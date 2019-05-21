@@ -4,22 +4,34 @@
 
 .tag {
     background-color: rgba(0, 0, 0, 0.15);
-    padding: 0 4px;
     height: 16px;
     display: inline-block;
     margin-right: 5px;
     border-radius: 1px;
+    user-select: none;
+    cursor: pointer;
 }
 
 .tag:last-of-type {
     margin-right: 0;
 }
 
+.tag:hover {
+    background-color: rgba(0, 0, 0, 0.10);
+}
+
+.tagLink {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 0 4px;
+}
+
 .tagText {
-    font-size: 11px;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
- Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 9px;
+    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
     line-height: 16px;
     margin: 0;
 }
-

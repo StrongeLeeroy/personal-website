@@ -161,8 +161,9 @@ urlEntrySchema.index({ shortCode: 1 });
 
 // Now, I create the model:
 var UrlEntry = mongoose.model('UrlEntry', urlEntrySchema);
-That's it for mongoose set up, onto the endpoints themselves.
 ```
+
+That's it for the mongoose set up, on to the endpoints themselves now.
 
 ## Endpoint: /new
 As seen in previous posts, you can user path parameters to send data through to the endpoint handler doing something like this:

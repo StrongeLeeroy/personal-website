@@ -6,7 +6,7 @@ import tagStyles from './tag.module.css';
 const TagCloud = ({ tags }) => (
     <div className={tagStyles.tagCloud}>
         {
-            tags.map(tag => (<Tag>{tag}</Tag>))
+            tags.map(tag => (<Tag key={tag}>{tag}</Tag>))
         }
     </div>
 );
