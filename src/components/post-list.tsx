@@ -15,7 +15,7 @@ const PostList = ({ posts }) => (
                     <p className={postListStyles.postDate}>
                         {node.frontmatter.date.toUpperCase()}
                         <span className="separator-square"></span>
-                        <span className={postListStyles.postAuthor}>{node.frontmatter.author.toUpperCase()}</span>
+                        <span className={postListStyles.postuthor}>{node.frontmatter.author.toUpperCase()}</span>
                     </p>
                     <p>
                         {node.excerpt}

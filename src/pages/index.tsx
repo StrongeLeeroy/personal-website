@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostList from '../components/post-list';
 
-const indexKeywords = [
+export const indexKeywords = [
   'gorka', 'hernandez', 'estomba', 'web', 'developer', 'consultant', 'portfolio', 'blog', 'contact', 'react', 'angular', 'guides', 'guide',
   'tutorial', 'help', 'beginners', 'intermediate', 'advanced', 'tutorials'
 ];
@@ -14,9 +14,8 @@ const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={indexKeywords} />
     <div>
-      <PostList posts={data.allMarkdownRemark.edges}/>
+      Homepage
     </div>
-    <Link to="/portfolio/">Portfolio</Link>
   </Layout>
 );
 
@@ -29,7 +28,9 @@ export const query = graphql`
         title
       }
     }
-    allMarkdownRemark {
+    allMarkdownRemark(
+      filter: { fields: { type: { eq: "blog-post" } } }
+    ) {
       totalCount
       edges {
         node {
@@ -41,10 +42,11 @@ export const query = graphql`
           }
           fields {
             slug
+            type
           }
           excerpt
         }
       }
     }
   }
-`
+`;

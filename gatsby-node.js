@@ -13,20 +13,52 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
 
     if (node.internal.type === `MarkdownRemark`) {
-        const value = createFilePath({ node, getNode });
-        const [ year, month, day ] = new Date(node.frontmatter.date)
-            .toISOString()
-            .split("T")[0]
-            .split("-");
+        const blogPage = /(\/content\/blog\/.*\..*$)/;
+        const portfolioPage = /(\/content\/portfolio\/.*\..*$)/;
 
-        const slug = value.replace("/blog", "").replace(/\/$/, "");
-        const url = `/blog/${year}/${month}/${day}${slug}`;
+        if (blogPage.test(node.fileAbsolutePath)) {
+            const value = createFilePath({ node, getNode });
+            const [ year, month, day ] = new Date(node.frontmatter.date)
+                .toISOString()
+                .split("T")[0]
+                .split("-");
 
-        createNodeField({
-            name: `slug`,
-            node,
-            value: url
-        })
+            const slug = value.replace("/blog", "").replace(/\/$/, "");
+            const url = `/blog/${year}/${month}/${day}${slug}`;
+
+            createNodeField({
+                name: `slug`,
+                node,
+                value: url
+            });
+
+            createNodeField({
+                name: `type`,
+                node,
+                value: `blog-post`
+            });
+        } else if (portfolioPage.test(node.fileAbsolutePath)) {
+            const value = createFilePath({ node, getNode });
+            const [ year, month, day ] = new Date(node.frontmatter.date)
+                .toISOString()
+                .split("T")[0]
+                .split("-");
+
+            const slug = value.replace("/portfolio", "").replace(/\/$/, "");
+            const url = `/portfolio/${year}/${month}/${day}${slug}`;
+
+            createNodeField({
+                name: `slug`,
+                node,
+                value: url
+            });
+
+            createNodeField({
+                name: `type`,
+                node,
+                value: `portfolio-project`
+            });
+        }
     }
 }
 
@@ -35,10 +67,36 @@ exports.createPages = ({ graphql, actions }) => {
     const blogPost = path.resolve(`./src/layouts/blog-post.tsx`);
     const blogCategory = path.resolve(`./src/layouts/blog-category.tsx`);
     const blogTag = path.resolve(`./src/layouts/blog-tag-page.tsx`);
+    const portfolioProject = path.resolve(`./src/layouts/blog-tag-page.tsx`);
 
     return graphql(`
-        query blogPosts {
-            allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        query pages {
+            blog: allMarkdownRemark(
+                sort: { fields: [frontmatter___date], order: DESC },
+                filter: { fileAbsolutePath: { regex: "/(\/content\/blog\/.*\.md$)/" } }
+            ) {
+                edges {
+                    node {
+                        fields {
+                            slug
+                        }
+                        frontmatter {
+                            title
+                            date
+                            author
+                            category
+                            tags
+                            featured
+                        }
+                        html
+                    }
+                }
+            }
+
+            portfolio: allMarkdownRemark(
+                sort: { fields: [frontmatter___date], order: DESC },
+                filter: { fileAbsolutePath: { regex: "/(\/content\/portfolio\/.*\.md$)/" } }
+            ) {
                 edges {
                     node {
                         fields {
@@ -60,10 +118,21 @@ exports.createPages = ({ graphql, actions }) => {
     `).then(result => {
         if (result.errors) {
             console.error(result.errors);
-            // reject(result.errors);
+            return Promise.reject(result.errors);
         }
 
-        const posts = result.data.allMarkdownRemark.edges;
+        const portfolioProjects = result.data.portfolio.edges;
+        for (const project of portfolioProjects) {
+            createPage({
+                path: project.node.fields.slug,
+                component: portfolioProject,
+                context: {
+                    slug: project.node.fields.slug
+                }
+            })
+        }
+
+        const posts = result.data.blog.edges;
         const categories = [];
         const tags = [];
         for (const post of posts) {

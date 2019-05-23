@@ -3,26 +3,25 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import ProjectCard from '../components/portfolio/project-card';
+import { indexKeywords } from '.';
+import PostList from '../components/post-list';
 
-const Portfolio = ({ data }) => (
+const Blog = ({ data }) => (
   <Layout>
-    <SEO title="Portfolio" />
+    <SEO title="Home" keywords={indexKeywords} />
     <div
       style={{
         width: 1260,
         padding: `0px 1rem 1rem`
       }}
     >
-      {
-        data.allMarkdownRemark.edges
-          .map(project => (<ProjectCard key={project.node.id} project={project} />))
-      }
+      <PostList posts={data.allMarkdownRemark.edges}/>
     </div>
   </Layout>
 );
 
-export default Portfolio;
+export default Blog;
+
 
 export const query = graphql`
   query {
@@ -32,7 +31,7 @@ export const query = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { fields: { type: { eq: "portfolio-project" } } }
+      filter: { fields: { type: { eq: "blog-post" } } }
     ) {
       totalCount
       edges {
@@ -41,16 +40,7 @@ export const query = graphql`
           frontmatter {
             title
             author
-            category
-            tags
             date(formatString: "Do MMMM YYYY")
-            image {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
           }
           fields {
             slug
@@ -61,4 +51,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

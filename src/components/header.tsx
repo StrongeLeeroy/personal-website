@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './header.module.css';
+import LogoImg from './logo-img';
 
 declare const window: any;
 
@@ -55,25 +56,17 @@ class Header extends React.Component<any, any> {
         <div
           className={styles.innerWrapper}
           style={{
-            padding: `.5rem .5rem`
+            padding: `.5rem 1rem`
           }}
         >
-          <h1 className={styles.headerTitle}>
-            <Link
-              to='/'
-              style={{
-                color: `#000`,
-                textDecoration: `none`,
-              }}
-            >
-              {siteTitle.toUpperCase()}
-            </Link>
-          </h1>
-    
+          <Link to='/'>
+            <LogoImg />
+          </Link>
+          
           <nav className={styles.headerNavigation}>
-            <Link to="/portfolio">BLOG</Link>
+            <Link to="/blog">BLOG</Link>
             <Link to="/portfolio">PORTFOLIO</Link>
-            <Link to="/portfolio">CONTACT</Link>
+            <Link to="/contact">CONTACT</Link>
           </nav>
         </div>
       </header>

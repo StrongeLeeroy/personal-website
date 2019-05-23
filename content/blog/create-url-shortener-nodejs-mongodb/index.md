@@ -3,6 +3,7 @@ title: Create a URL Shortener with Node.js and MongoDB
 date: 2019-05-14
 author: Gorka Hernández Estomba
 featured: true
+image: ./featured-image.png
 category:
   - Node.js
   - Beginner Series
