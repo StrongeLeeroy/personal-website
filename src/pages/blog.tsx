@@ -11,7 +11,7 @@ const Blog = ({ data }) => (
     <SEO title="Home" keywords={indexKeywords} />
     <div
       style={{
-        width: 1260,
+        maxWidth: 1260,
         padding: `0px 1rem 1rem`
       }}
     >

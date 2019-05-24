@@ -6,8 +6,7 @@ import styles from './footer.module.css';
 import LogoImg from './logo-img';
 import LogoImgWhite from './logo-img-white';
 
-const Footer = ({ data }) => {
-  console.log(data);
+const Footer = () => {
   return (
     <footer
       style={{

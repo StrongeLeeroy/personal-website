@@ -13,28 +13,36 @@ const BlogPost = ({ data }) => {
     
     return (
         <>
-        {
+        {/* {
             markdownRemark.frontmatter.image ? <div className={postStyles.featuredImage}>
                 <Img fluid={markdownRemark.frontmatter.image.childImageSharp.fluid} />
             </div> : null
-        }
-        <Layout>
+        } */}
+        <Layout enableScrollTracker={true}>
             <SEO title={markdownRemark.frontmatter.title} keywords={markdownRemark.frontmatter.tags} />
             <ScrollToTopButton />
-            
+
             <h4 className={postStyles.headerDate}>{markdownRemark.frontmatter.date}</h4>
             <h4 className={postStyles.headerAuthor}>{markdownRemark.frontmatter.author}</h4>
+            
             <h1 className={postStyles.headerTitle}>{markdownRemark.frontmatter.title}</h1>
-            {/* <p>In: {markdownRemark.frontmatter.category.join()}</p> */}
+            {/* <div className={postStyles.categoriesWrapper}>
+                {markdownRemark.frontmatter.category.map(category => (
+                    <Link
+                        className={postStyles.categoryName}
+                        key={category}
+                        to={`/blog/category/${kebabCase(category)}`}
+                    >
+                        {category.toUpperCase()}
+                    </Link>
+                ))}
+            </div> */}
+
+            <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }}></div>
+            <hr/>
             <div className={postStyles.headerTagCloud}>
                 <TagCloud tags={markdownRemark.frontmatter.tags} />
             </div>
-            <div>
-                {markdownRemark.frontmatter.category.map(category => (
-                    <Link key={category} to={`/blog/category/${kebabCase(category)}`}>{category}</Link>
-                ))}
-            </div>
-            <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }}></div>
         </Layout>
         </>
     );

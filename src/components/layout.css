@@ -677,3 +677,15 @@ a.read-more-link {
 .code[class*="language-"], pre[class*="language-"] {
   font-size: 0.75em;
 }
+
+hr {
+  width: 80%;
+  margin: 0 auto 25.1px auto;
+  border-top: 1px solid rgb(216, 216, 216);
+  display: block;
+  background-color: transparent;
+}
+
+.gatsby-highlight {
+  margin-bottom: 25px;
+}

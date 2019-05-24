@@ -1,3 +1,8 @@
+.featuredImage {
+    position: relative;
+    top: 55px;
+}
+
 .headerDate {
     margin: 0;
     font-size: .75em;
@@ -14,9 +19,20 @@
 }
 
 .headerTitle {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .headerTagCloud {
     margin-bottom: 10px;
+}
+
+.categoriesWrapper {
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+
+.categoryName {
+    color: #7d7d7d;
+    font-family: "League Spartan";
+    margin-right: 15px;
 }
