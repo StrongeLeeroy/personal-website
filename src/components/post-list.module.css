@@ -26,5 +26,8 @@
 }
 
 .postAuthor {
-    color: rgb(150, 150, 150);
+    color: rgb(170, 170, 170);
+    font-family: "Raleway";
+    font-weight: 700;
+    font-size: 11px;
 }

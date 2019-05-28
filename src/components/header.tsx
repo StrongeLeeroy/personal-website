@@ -42,7 +42,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 
   getCompletion() {
     if (window.pageYOffset > 0) {
-      return window.pageYOffset / document.body.offsetHeight * 100
+      const height = document.body.offsetHeight - 1500;
+      const scrollDistance = window.pageYOffset;
+      return scrollDistance / height * 100;
     } else {
       return 0;
     }
@@ -76,7 +78,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   }
 
   render() {
-    const linkActive = { borderBottom: '3px solid rgb(73, 93, 192)' };
     return (
       <header
         className={this.state.headerClasses}
@@ -92,9 +93,32 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           </Link>
           
           <nav className={styles.headerNavigation}>
-            <Link to="/blog" activeStyle={linkActive} partiallyActive={true}>BLOG</Link>
-            <Link to="/portfolio" activeStyle={linkActive} partiallyActive={true}>PORTFOLIO</Link>
-            <Link to="/contact" activeStyle={linkActive} partiallyActive={true}>CONTACT</Link>
+            <Link
+              to="/blog" partiallyActive={true}
+              activeClassName={styles.headerNavigationLinkWrapperActive}
+              className={styles.headerNavigationLinkWrapper}
+            >
+              <span className={styles.headerNavigationLink}>BLOG</span>
+              <div className={styles.underlineBox}></div>
+            </Link>
+
+            <Link
+              to="/portfolio" partiallyActive={true}
+              activeClassName={styles.headerNavigationLinkWrapperActive}
+              className={styles.headerNavigationLinkWrapper}
+            >
+              <span className={styles.headerNavigationLink}>PORTFOLIO</span>
+              <div className={styles.underlineBox}></div>
+            </Link>
+
+            <Link
+              to="/contact" partiallyActive={true}
+              activeClassName={styles.headerNavigationLinkWrapperActive}
+              className={styles.headerNavigationLinkWrapper}
+            >
+              <span className={styles.headerNavigationLink}>CONTACT</span>
+              <div className={styles.underlineBox}></div>
+            </Link>
           </nav>
         </div>
         {

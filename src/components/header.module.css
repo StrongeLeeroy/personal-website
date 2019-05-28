@@ -31,11 +31,18 @@
 
 .headerTitle a {
   color: rgb(51, 51, 51);
-  text-decoration: none;
-  font-family: Montserrat;
   font-weight: 100;
   font-size: 28px;
 }
+
+.scrollComplete {
+  background-color: rgb(73, 93, 192);
+  height: 5px;
+  width: 0;
+}
+
+
+/** HEADER NAVIGATION LINKS **/
 
 .headerNavigation {
   display: flex;
@@ -44,20 +51,55 @@
 }
 
 .headerNavigation a {
-  font-family: "Montserrat";
+  font-family: "Raleway";
+  letter-spacing: 1px;
   color: #333333;
-  font-weight: 600;
-  font-size: 14px;
-  margin-left: 25px;
-  border-bottom: 3px solid transparent;
+  font-weight: 700;
+  font-size: 13px;
+  /* border-bottom: 3px solid transparent; */
 }
 
 .headerNavigation a:hover {
   text-decoration: none;
 }
 
-.scrollComplete {
+.headerNavigationLinkWrapper {
+  margin-left: 25px;
+  overflow: hidden;
+}
+
+.headerNavigationLinkWrapperActive .headerNavigationLink {
+  color: #495dc0;
+}
+
+.underlineBox {
+  height: 3px;
   background-color: rgb(73, 93, 192);
-  height: 5px;
-  width: 0;
+
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: .15s ease-in transform;
+}
+
+.headerNavigationLinkWrapper:hover .underlineBox {
+  animation-name: underline-animation;
+  animation-duration: .5s;
+  animation-timing-function: ease-in-out;
+  transform: scaleX(1);
+}
+
+@keyframes underline-animation {
+  0% {
+    transform: scaleX(0.35);
+  }
+  50% {
+    transform: scaleX(0.5) scaleY(.5) translateX(-200%);
+  }
+  50.001% {
+    transform: scaleX(0) scaleY(.5) translateX(0);
+  }
+
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
 }

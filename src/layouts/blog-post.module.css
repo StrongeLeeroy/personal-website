@@ -15,10 +15,11 @@
     font-size: .9em;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.75);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .headerTitle {
+    font-family: "League Spartan";
     margin-bottom: 25px;
 }
 
