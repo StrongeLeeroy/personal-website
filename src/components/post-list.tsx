@@ -7,7 +7,7 @@ const PostList = ({ posts }) => (
     <>
         <h4>{posts.length} posts</h4>
         {
-            posts.map(({ node }) => (
+            posts.map(({ node }: { node: any }) => (
                 <div className={postListStyles.postWrapper} key={node.id}>
                     <Link className={postListStyles.headerLink} to={node.fields.slug}>
                         <h3>{node.frontmatter.title} {" "}</h3>
@@ -15,7 +15,7 @@ const PostList = ({ posts }) => (
                     <p className={postListStyles.postDate}>
                         {node.frontmatter.date.toUpperCase()}
                         <span className="separator-square"></span>
-                        <span className={postListStyles.postAuthor}>{node.frontmatter.author.toUpperCase()}</span>
+                        <span className={postListStyles.postAuthor}>{node.frontmatter && node.frontmatter.author ? node.frontmatter.author.toUpperCase() : null}</span>
                     </p>
                     <p>
                         {node.excerpt}

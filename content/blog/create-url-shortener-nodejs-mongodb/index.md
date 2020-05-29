@@ -38,7 +38,7 @@ tags:
   - ternary
 ---
 
-URL shorteners are very useful. Remembering long and tedious URL addresses, or sharing 100 character URLs with your peers is not what we would call, convenient. That's why we have services such as the *Google URL Shortener*, *Bitly* or *TinyURL*.
+> URL shorteners are very useful. Remembering long and tedious URL addresses, or sharing 100 character URLs with your peers is not what we would call, convenient. That's why we have services such as the *Google URL Shortener*, *Bitly* or *TinyURL*.
 
 We are going to replicate the functionality that these pages offer to some extent. We'll start off by creating an API using Node.js and the Express framework, and will integrate with a MongoDB instance to store information making use of Mongoose.
 

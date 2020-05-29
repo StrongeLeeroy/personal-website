@@ -44,7 +44,9 @@ export default class ScrollToTopButton extends React.Component<{}, ScrollToTopBu
     }
 
     getScrolledDistance(): number {
-        return (document as any).documentElement.scrollTop || (document as any).body.scrollTop;
+        if (typeof document !== `undefined`) {
+            return (document as any).documentElement.scrollTop || (document as any).body.scrollTop;
+        }
     }
 
     render() {

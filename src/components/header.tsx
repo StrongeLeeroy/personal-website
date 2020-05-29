@@ -32,16 +32,21 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 
   constructor(props) {
     super(props);
+    let scrollTop: number;
+
+    if (typeof window !== `undefined`) {
+      scrollTop = window.pageYOffset;
+    }
 
     this.state = {
-      scrollTop: window.pageYOffset,
+      scrollTop,
       headerClasses: this.headerClasses,
       completion: this.getCompletion()
     }
   }
 
   getCompletion() {
-    if (window.pageYOffset > 0) {
+    if (typeof window !== `undefined` && window.pageYOffset > 0) {
       const height = document.body.offsetHeight - 1500;
       const scrollDistance = window.pageYOffset;
       return scrollDistance / height * 100;
